@@ -1,0 +1,181 @@
+/* Wallet Features - Expressive Professional */
+.features {
+    background: #030303;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 100px 0;
+}
+
+.features__header {
+    text-align: center;
+    margin-bottom: 80px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features__title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+/* Features Grid */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 80px;
+}
+
+.feature-card {
+    padding: 40px;
+    background: #080808;
+    /* Deep matte */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #0A0A0A;
+}
+
+/* Expressive Icons */
+.feature-card__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-card__icon {
+    transform: scale(1.1);
+}
+
+.feature-card__icon svg {
+    width: 28px;
+    height: 28px;
+    color: #FFF;
+}
+
+/* Color Varieties for Expression - Linear Style gradients */
+.feature-card:nth-child(1) .feature-card__icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+}
+
+.feature-card:nth-child(1) .feature-card__icon svg {
+    color: #10B981;
+}
+
+.feature-card:nth-child(2) .feature-card__icon {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.feature-card:nth-child(2) .feature-card__icon svg {
+    color: #3B82F6;
+}
+
+.feature-card:nth-child(3) .feature-card__icon {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+.feature-card:nth-child(3) .feature-card__icon svg {
+    color: #8B5CF6;
+}
+
+.feature-card:nth-child(4) .feature-card__icon {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.1);
+}
+
+.feature-card:nth-child(4) .feature-card__icon svg {
+    color: #F59E0B;
+}
+
+
+.feature-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #FFFFFF;
+}
+
+.feature-card__description {
+    font-size: 1.0625rem;
+    color: #888888;
+    line-height: 1.6;
+}
+
+/* Minimal Stats */
+.features__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Divider color */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features__stat {
+    background: #050505;
+    padding: 40px;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+
+.features__stat:hover {
+    background: #080808;
+}
+
+.features__stat-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.features__stat-label {
+    font-size: 0.875rem;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .features__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features__title {
+        font-size: 2.25rem;
+    }
+
+    .features__stats {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,330 @@
+/* Receive Page Styles */
+.receive-page {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header */
+.receive-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0 24px;
+}
+
+.receive-back-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.receive-back-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.receive-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+/* Search Bar */
+.receive-search-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.receive-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.receive-search-input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    background: #12121a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.receive-search-input::placeholder {
+    color: #666;
+}
+
+.receive-search-input:focus {
+    border-color: rgba(20, 241, 149, 0.3);
+    background: #15151f;
+}
+
+/* Network Filters */
+.receive-network-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.receive-network-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    color: #888;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.receive-network-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.receive-network-btn.active {
+    background: #1a1a2e;
+    border-color: rgba(20, 241, 149, 0.3);
+    color: #14F195;
+}
+
+/* Wallet List */
+.receive-wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #12121a;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.receive-wallet-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.receive-wallet-item:last-child {
+    border-bottom: none;
+}
+
+.receive-wallet-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.receive-wallet-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.receive-wallet-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.receive-wallet-symbol {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.receive-wallet-network {
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    color: #888;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.receive-wallet-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.receive-wallet-change {
+    font-size: 0.8rem;
+}
+
+.receive-wallet-change.positive {
+    color: #10B981;
+}
+
+.receive-wallet-change.negative {
+    color: #EF4444;
+}
+
+.receive-wallet-balance {
+    text-align: right;
+}
+
+.receive-wallet-amount {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.receive-wallet-usd {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Detail View */
+.receive-detail-card {
+    background: #12121a;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.receive-coin-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.receive-network-badge {
+    padding: 4px 12px;
+    background: rgba(20, 241, 149, 0.1);
+    border-radius: 6px;
+    color: #14F195;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.receive-qr-container {
+    margin-bottom: 24px;
+}
+
+.receive-qr-placeholder {
+    width: 180px;
+    height: 180px;
+    background: #fff;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.receive-address-label {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.receive-address-box {
+    background: #0a0a0f;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    word-break: break-all;
+    color: #fff;
+    font-size: 0.85rem;
+    font-family: 'Monaco', 'Consolas', monospace;
+    line-height: 1.5;
+}
+
+.receive-copy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #14F195 0%, #10B981 100%);
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.receive-copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(20, 241, 149, 0.3);
+}
+
+.receive-warning {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 10px;
+    color: #EF4444;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .receive-page {
+        padding: 0;
+    }
+
+    .receive-header {
+        padding: 4px 0 16px;
+    }
+
+    .receive-title {
+        font-size: 1rem;
+    }
+
+    .receive-wallet-item {
+        padding: 14px 16px;
+    }
+
+    .receive-wallet-symbol {
+        font-size: 0.9rem;
+    }
+
+    .receive-wallet-amount {
+        font-size: 0.9rem;
+    }
+
+    .receive-detail-card {
+        padding: 24px 16px;
+    }
+
+    .receive-qr-placeholder {
+        width: 160px;
+        height: 160px;
+    }
+
+    .receive-address-box {
+        font-size: 0.75rem;
+        padding: 12px;
+    }
+}

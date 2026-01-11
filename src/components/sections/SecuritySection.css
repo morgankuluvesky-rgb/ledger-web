@@ -1,0 +1,218 @@
+/* Security Section - Expressive Professional */
+.security.section {
+    padding: 120px 0;
+    background: #030303;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Glow for Expression */
+.security.section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.security__container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.security__title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: #FFFFFF;
+}
+
+.security__title-highlight {
+    background: linear-gradient(135deg, #FFF 30%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.security__description {
+    font-size: 1.125rem;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 56px;
+    max-width: 500px;
+}
+
+/* List */
+.security__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.security__item {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.security__item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(8px);
+}
+
+.security__item-icon {
+    width: 56px;
+    height: 56px;
+    background: #0A0A0A;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.security__item:hover .security__item-icon {
+    border-color: #10B981;
+    color: #10B981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.security__item-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.security__item-text h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.security__item-text p {
+    font-size: 1rem;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Visual - Glowing Shield */
+.security__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.security__shield {
+    position: relative;
+    color: #10B981;
+    animation: float 6s ease-in-out infinite;
+}
+
+.security__shield svg {
+    filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.3));
+    width: 280px;
+    height: 280px;
+}
+
+.security__shield-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, #10B981 0%, transparent 70%);
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .security.section {
+        padding: 80px 0;
+    }
+
+    .security__container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+    }
+
+    .security__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .security__title {
+        font-size: 2.25rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .security__description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        padding: 0 16px;
+    }
+
+    .security__list {
+        width: 100%;
+        align-items: center;
+    }
+
+    .security__item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .security__item:hover {
+        transform: translateY(-4px);
+    }
+
+    .security__item-text {
+        text-align: center;
+    }
+
+    .security__item-text h3,
+    .security__item-text p {
+        text-align: center;
+    }
+
+    .security__visual {
+        order: -1;
+    }
+
+    .security__shield svg {
+        width: 200px;
+        height: 200px;
+    }
+}

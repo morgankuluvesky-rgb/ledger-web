@@ -1,0 +1,122 @@
+.faq {
+    background: var(--bg-secondary);
+}
+
+.faq__list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.faq__list.animate .faq__item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FAQ Item */
+.faq__item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.faq__item:hover {
+    border-color: var(--border-color-hover);
+}
+
+.faq__item.open {
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(20, 241, 149, 0.1);
+}
+
+/* Question */
+.faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.faq__question:hover {
+    color: var(--primary);
+}
+
+.faq__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted);
+    transition: transform var(--transition-base);
+}
+
+.faq__item.open .faq__icon {
+    transform: rotate(45deg);
+    color: var(--primary);
+}
+
+/* Answer */
+.faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-base), padding var(--transition-base);
+}
+
+.faq__item.open .faq__answer {
+    max-height: 500px;
+}
+
+.faq__answer p {
+    padding: 0 var(--space-6) var(--space-6);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* Help CTA */
+.faq__help {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--border-color);
+}
+
+.faq__help p {
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faq__question {
+        padding: var(--space-4);
+        font-size: var(--text-base);
+    }
+
+    .faq__answer p {
+        padding: 0 var(--space-4) var(--space-4);
+        font-size: var(--text-sm);
+    }
+
+    .faq__help {
+        flex-direction: column;
+        text-align: center;
+    }
+}

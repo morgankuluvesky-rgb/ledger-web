@@ -1,0 +1,155 @@
+/* Hero - High-End Fintech Style */
+.hero {
+    position: relative;
+    min-height: 90vh;
+    /* slightly less than full viewport for modern look */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #030303;
+    /* Deepest black/gray */
+    overflow: hidden;
+    padding-top: var(--header-height);
+}
+
+/* 
+   Stage Light Effect 
+   Optimized: Single radial gradient, no heavy blurs
+*/
+.hero__stage-light {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    /* Constrain the glow width */
+    background: radial-gradient(circle at 50% 0%,
+            rgba(100, 80, 255, 0.15) 0%,
+            rgba(0, 0, 0, 0) 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Typography */
+.hero__title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin-bottom: 32px;
+}
+
+.hero__title-gradient {
+    background: linear-gradient(135deg, #ffffff 30%, #a5a5a5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    /* Fix for some browsers clipping text gradients */
+}
+
+.hero__subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.5;
+    color: #888888;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto 56px;
+    letter-spacing: -0.01em;
+}
+
+/* Professional Buttons */
+.hero__cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    /* Pill shape */
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    letter-spacing: -0.01em;
+}
+
+/* Filled Button (High Contrast) */
+.btn-filled {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+}
+
+.btn-filled:hover {
+    background: #e6e6e6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Outlined Button (Subtle) */
+.btn-outlined {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-outlined:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero__title {
+        font-size: 3rem;
+        /* Still large on mobile but fitting */
+    }
+
+    .hero__subtitle {
+        font-size: 1.125rem;
+        padding: 0 16px;
+    }
+
+    .hero__cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .btn-premium {
+        width: 100%;
+    }
+}
