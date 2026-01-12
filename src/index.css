@@ -130,6 +130,12 @@ body {
   overflow-x: hidden;
 }
 
+body.menu-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* Typography Defaults */
 h1,
 h2,

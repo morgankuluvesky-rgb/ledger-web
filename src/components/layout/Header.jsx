@@ -20,12 +20,12 @@ export default function Header() {
     // Prevent body scroll when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('menu-open');
         } else {
-            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
         }
         return () => {
-            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
         };
     }, [isMobileMenuOpen]);
 
