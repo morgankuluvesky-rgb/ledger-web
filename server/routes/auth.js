@@ -38,15 +38,14 @@ const generateWallets = async (userId) => {
         { coin: 'DOGE', network: 'mainnet', address: 'DNRxwmPJnEh8EF1nVXunMiFUz9nHYNCAeH' },
     ];
 
-    for (const wallet of wallets) {
-        await prisma.wallet.create({
-            data: {
-                userId,
-                ...wallet,
-                balance: 0
-            }
-        });
-    }
+    // Batch create all wallets at once (much faster!)
+    await prisma.wallet.createMany({
+        data: wallets.map(wallet => ({
+            userId,
+            ...wallet,
+            balance: 0
+        }))
+    });
 };
 
 
