@@ -283,6 +283,14 @@
     padding: 16px;
     font-size: 1rem;
     text-align: center;
+}
+
+.header__mobile-cta .btn-primary {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+.header__mobile-cta .btn-secondary {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
 }
