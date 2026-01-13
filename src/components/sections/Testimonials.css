@@ -123,11 +123,12 @@
     align-items: center;
 }
 
-.testimonial-card__logo-img {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.9;
+.testimonial-card__logo-text {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #000;
+    letter-spacing: 0.5px;
 }
 
 /* Responsive */

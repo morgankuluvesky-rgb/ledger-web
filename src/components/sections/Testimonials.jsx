@@ -72,11 +72,9 @@ export default function Testimonials() {
                             <div className="testimonial-card__author">
                                 {testimonial.isLogo ? (
                                     <div className="testimonial-card__logo-container">
-                                        <img
-                                            src={testimonial.image}
-                                            alt={testimonial.name}
-                                            className="testimonial-card__logo-img"
-                                        />
+                                        <span className="testimonial-card__logo-text">
+                                            {testimonial.name}
+                                        </span>
                                     </div>
                                 ) : (
                                     <>
