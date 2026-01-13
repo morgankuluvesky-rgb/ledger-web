@@ -10,6 +10,16 @@ export default function Hero() {
                 <div className="hero__aurora-blob hero__aurora-blob--3"></div>
             </div>
 
+            {/* Particle System (Stars/Snow) */}
+            <div className="hero__particles">
+                <div className="hero__particle"></div>
+                <div className="hero__particle"></div>
+                <div className="hero__particle"></div>
+                <div className="hero__particle"></div>
+                <div className="hero__particle"></div>
+                <div className="hero__particle"></div>
+            </div>
+
             {/* Floating 3D Shapes */}
             <div className="hero__floating-shapes">
                 <div className="hero__shape hero__shape--1"></div>

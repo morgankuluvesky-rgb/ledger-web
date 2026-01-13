@@ -433,50 +433,152 @@
     transform: translateY(-2px);
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness & Advanced Animations */
 @media (max-width: 768px) {
     .hero {
         padding-top: calc(var(--header-height) + 20px);
         min-height: 85vh;
-        /* Slightly shorter on mobile */
     }
 
+    /* Make text punchy but fitting */
     .hero__title {
         font-size: clamp(2.5rem, 10vw, 3.5rem);
-        /* Better scaling */
         margin-bottom: 24px;
         line-height: 1.1;
-    }
-
-    .hero__subtitle {
-        font-size: 1rem;
-        line-height: 1.6;
-        padding: 0 16px;
-        margin-bottom: 40px;
+        text-align: center;
     }
 
     .hero__cta-group {
         flex-direction: column;
         width: 100%;
-        max-width: 100%;
         gap: 12px;
     }
 
-    .btn-premium {
-        width: 100%;
-        padding: 14px 32px;
-        /* Slightly smaller padding */
-    }
+    /* RE-ENABLE & TUNE ANIMATIONS FOR MOBILE */
 
-    /* Reduce background intensity on mobile */
+    /* 1. The Aura: Make it visible but subtle */
     .hero__aurora-blob {
-        opacity: 0.4;
-        filter: blur(60px);
+        opacity: 0.5;
+        filter: blur(50px);
+        animation-duration: 15s;
+        /* Faster movement on mobile for 'alive' feel */
     }
 
-    /* Hide floating shapes on small mobile to reduce clutter */
+    /* 2. Floating Orbs: Visible now, but positioned carefully */
     .hero__floating-shapes {
-        display: none;
+        display: block;
+        /* Show them! */
+        opacity: 0.7;
+    }
+
+    .hero__shape--1 {
+        width: 60px;
+        height: 60px;
+        top: 10%;
+        left: 5%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    }
+
+    .hero__shape--2 {
+        width: 80px;
+        height: 80px;
+        bottom: 20%;
+        right: 5%;
+        background: radial-gradient(circle, rgba(153, 69, 255, 0.2) 0%, transparent 70%);
+    }
+}
+
+/* 
+   NEW: GLOBAL PARTICLE SYSTEM (Snow/Stars) 
+   Visible on ALL devices but key for Mobile Magic 
+*/
+.hero__particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero__particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particlesFloat linear infinite;
+}
+
+/* Creating random-looking particles using nth-child */
+.hero__particle:nth-child(1) {
+    left: 10%;
+    top: 100%;
+    animation-duration: 7s;
+    animation-delay: 0s;
+}
+
+.hero__particle:nth-child(2) {
+    left: 30%;
+    top: 100%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+    width: 3px;
+    height: 3px;
+    opacity: 0.5;
+}
+
+.hero__particle:nth-child(3) {
+    left: 70%;
+    top: 100%;
+    animation-duration: 10s;
+    animation-delay: 1s;
+}
+
+.hero__particle:nth-child(4) {
+    left: 50%;
+    top: 100%;
+    animation-duration: 15s;
+    animation-delay: 4s;
+    width: 1px;
+    height: 1px;
+}
+
+.hero__particle:nth-child(5) {
+    left: 85%;
+    top: 100%;
+    animation-duration: 8s;
+    animation-delay: 3s;
+}
+
+.hero__particle:nth-child(6) {
+    left: 15%;
+    top: 100%;
+    animation-duration: 14s;
+    animation-delay: 6s;
+}
+
+@keyframes particlesFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) translateX(20px);
+        /* Move UP smoothly */
+        opacity: 0;
     }
 }
 
