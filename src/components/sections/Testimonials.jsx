@@ -12,7 +12,7 @@ const TESTIMONIALS = [
         quote: "Notably, Web3SafePal allows for buying and swapping within the App, hooks into CEX like Binance, and provides powerful DApp support like Uniswap.",
         name: "Forbes",
         title: "Media Partner",
-        image: "/images/avatars/forbes.png",
+        image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Forbes_logo.svg",
         isLogo: true // Keep flag for styling but use image
     },
     {
