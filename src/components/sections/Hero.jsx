@@ -3,8 +3,18 @@ import './Hero.css';
 export default function Hero() {
     return (
         <section className="hero">
-            {/* Optimized Static Background Glow - No Lag */}
-            <div className="hero__stage-light"></div>
+            {/* Aurora Background Animation */}
+            <div className="hero__aurora-container">
+                <div className="hero__aurora-blob hero__aurora-blob--1"></div>
+                <div className="hero__aurora-blob hero__aurora-blob--2"></div>
+                <div className="hero__aurora-blob hero__aurora-blob--3"></div>
+            </div>
+
+            {/* Floating 3D Shapes */}
+            <div className="hero__floating-shapes">
+                <div className="hero__shape hero__shape--1"></div>
+                <div className="hero__shape hero__shape--2"></div>
+            </div>
 
             <div className="hero__container">
                 <div className="hero__content-wrapper">
