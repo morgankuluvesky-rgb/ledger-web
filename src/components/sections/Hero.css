@@ -435,23 +435,53 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    .hero {
+        padding-top: calc(var(--header-height) + 20px);
+        min-height: 85vh;
+        /* Slightly shorter on mobile */
+    }
+
     .hero__title {
-        font-size: 3rem;
-        /* Still large on mobile but fitting */
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+        /* Better scaling */
+        margin-bottom: 24px;
+        line-height: 1.1;
     }
 
     .hero__subtitle {
-        font-size: 1.125rem;
+        font-size: 1rem;
+        line-height: 1.6;
         padding: 0 16px;
+        margin-bottom: 40px;
     }
 
     .hero__cta-group {
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 100%;
+        gap: 12px;
     }
 
     .btn-premium {
         width: 100%;
+        padding: 14px 32px;
+        /* Slightly smaller padding */
+    }
+
+    /* Reduce background intensity on mobile */
+    .hero__aurora-blob {
+        opacity: 0.4;
+        filter: blur(60px);
+    }
+
+    /* Hide floating shapes on small mobile to reduce clutter */
+    .hero__floating-shapes {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__container {
+        padding: 0 20px;
     }
 }
