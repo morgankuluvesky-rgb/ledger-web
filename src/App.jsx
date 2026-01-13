@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
+import PageTransition from './components/PageTransition';
 import { AuthProvider } from './dashboard/context/AuthContext';
 
 // Public Pages
@@ -51,65 +52,67 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <ScrollToTop />
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+        <PageTransition>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
 
-          {/* Company Pages */}
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} />
+            {/* Company Pages */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
 
-          {/* Legal Pages */}
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/cookies" element={<CookiePolicy />} />
+            {/* Legal Pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookies" element={<CookiePolicy />} />
 
-          {/* Asset Pages */}
-          <Route path="/assets" element={<Assets />} />
-          <Route path="/bitcoin" element={<Bitcoin />} />
-          <Route path="/ethereum" element={<Ethereum />} />
-          <Route path="/solana" element={<Solana />} />
+            {/* Asset Pages */}
+            <Route path="/assets" element={<Assets />} />
+            <Route path="/bitcoin" element={<Bitcoin />} />
+            <Route path="/ethereum" element={<Ethereum />} />
+            <Route path="/solana" element={<Solana />} />
 
-          {/* Solutions Pages */}
-          <Route path="/trading" element={<TradingPlatform />} />
-          <Route path="/portfolio" element={<PortfolioManagement />} />
-          <Route path="/staking" element={<Staking />} />
+            {/* Solutions Pages */}
+            <Route path="/trading" element={<TradingPlatform />} />
+            <Route path="/portfolio" element={<PortfolioManagement />} />
+            <Route path="/staking" element={<Staking />} />
 
-          {/* Resources Pages */}
-          <Route path="/help" element={<HelpCenter />} />
-          <Route path="/blog" element={<Blog />} />
+            {/* Resources Pages */}
+            <Route path="/help" element={<HelpCenter />} />
+            <Route path="/blog" element={<Blog />} />
 
-          {/* Auth Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/verify" element={<VerifyPage />} />
-          <Route path="/pin-setup" element={<PinSetupPage />} />
-          <Route path="/pin" element={<PinEntryPage />} />
+            {/* Auth Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/verify" element={<VerifyPage />} />
+            <Route path="/pin-setup" element={<PinSetupPage />} />
+            <Route path="/pin" element={<PinEntryPage />} />
 
-          {/* Dashboard Routes (Protected) */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<WalletPage />} />
-            <Route path="send" element={<SendPage />} />
-            <Route path="receive" element={<ReceivePage />} />
-            <Route path="swap" element={<SwapPage />} />
-            <Route path="referrals" element={<ReferralsPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="manage-crypto" element={<ManageCryptoPage />} />
-            <Route path="addresses" element={<AddressesPage />} />
-            <Route path="notifications" element={<NotificationsPage />} />
-            <Route path="cards" element={<CardsPage />} />
-            <Route path="buy" element={<BuyPage />} />
-          </Route>
+            {/* Dashboard Routes (Protected) */}
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<WalletPage />} />
+              <Route path="send" element={<SendPage />} />
+              <Route path="receive" element={<ReceivePage />} />
+              <Route path="swap" element={<SwapPage />} />
+              <Route path="referrals" element={<ReferralsPage />} />
+              <Route path="settings" element={<SettingsPage />} />
+              <Route path="manage-crypto" element={<ManageCryptoPage />} />
+              <Route path="addresses" element={<AddressesPage />} />
+              <Route path="notifications" element={<NotificationsPage />} />
+              <Route path="cards" element={<CardsPage />} />
+              <Route path="buy" element={<BuyPage />} />
+            </Route>
 
-          {/* Admin Panel (Separate) */}
-          <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<AdminPanel />}>
-            <Route index element={<AdminDashboardPage />} />
-          </Route>
-          <Route path="/admin/users" element={<AdminPanel />}>
-            <Route index element={<AdminUsersPage />} />
-          </Route>
-        </Routes>
+            {/* Admin Panel (Separate) */}
+            <Route path="/admin" element={<AdminLoginPage />} />
+            <Route path="/admin/dashboard" element={<AdminPanel />}>
+              <Route index element={<AdminDashboardPage />} />
+            </Route>
+            <Route path="/admin/users" element={<AdminPanel />}>
+              <Route index element={<AdminUsersPage />} />
+            </Route>
+          </Routes>
+        </PageTransition>
       </AuthProvider>
     </BrowserRouter>
   );
