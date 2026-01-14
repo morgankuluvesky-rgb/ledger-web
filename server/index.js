@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const { ensureDefaultAdmin } = require('./config/default-admin');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -40,7 +41,10 @@ app.use((err, req, res, next) => {
 });
 
 // Listen on 0.0.0.0 to accept connections from any network IP
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', async () => {
     console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+
+    // Ensure default admin account exists
+    await ensureDefaultAdmin();
 });
 
