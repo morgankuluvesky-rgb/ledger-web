@@ -5,6 +5,7 @@ import { API_URL } from '../config/api';
 export default function AdminPanel() {
     const [admin, setAdmin] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -73,137 +74,221 @@ export default function AdminPanel() {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <div style={{ display: 'flex', minHeight: '100vh', background: '#0a0a0f' }}>
-            {/* Sidebar */}
-            <aside style={{
-                width: '260px',
-                background: 'linear-gradient(180deg, #12121a 0%, #0a0a0f 100%)',
-                borderRight: '1px solid rgba(153, 69, 255, 0.2)',
-                padding: '24px 0',
-                position: 'fixed',
-                height: '100vh',
-                overflowY: 'auto'
-            }}>
-                {/* Logo */}
-                <div style={{ padding: '0 20px', marginBottom: '32px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <div style={{
-                            width: '40px',
-                            height: '40px',
-                            background: 'linear-gradient(135deg, #9945FF, #14F195)',
-                            borderRadius: '12px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <div style={{ color: '#fff', fontWeight: '700', fontSize: '1.1rem' }}>Web3SafePal</div>
-                            <div style={{ color: '#9945FF', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Admin Panel</div>
-                        </div>
-                    </div>
-                </div>
+        <>
+            <style>{`
+                @media (max-width: 768px) {
+                    .admin-sidebar {
+                        transform: translateX(-100%);
+                        z-index: 1000;
+                    }
+                    .admin-sidebar.open {
+                        transform: translateX(0);
+                    }
+                    .admin-main {
+                        margin-left: 0 !important;
+                        padding-top: 70px !important;
+                    }
+                    .mobile-menu-btn {
+                        display: block !important;
+                    }
+                }
+            `}</style>
 
-                {/* Admin Info */}
-                <div style={{
-                    margin: '0 20px 24px',
-                    padding: '16px',
-                    background: 'rgba(153, 69, 255, 0.1)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(153, 69, 255, 0.2)'
-                }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <div style={{
-                            width: '40px',
-                            height: '40px',
-                            background: 'linear-gradient(135deg, #9945FF, #14F195)',
-                            borderRadius: '50%',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#000',
-                            fontWeight: '700'
-                        }}>
-                            {admin?.name?.charAt(0) || 'A'}
-                        </div>
-                        <div>
-                            <div style={{ color: '#fff', fontWeight: '600' }}>{admin?.name || 'Admin'}</div>
-                            <div style={{ color: '#666', fontSize: '0.8rem' }}>{admin?.email}</div>
-                        </div>
-                    </div>
-                </div>
+            <div style={{ display: 'flex', minHeight: '100vh', background: '#0a0a0f', position: 'relative' }}>
+                {/* Mobile Menu Button */}
+                <button
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    style={{
+                        display: 'none',
+                        position: 'fixed',
+                        top: '16px',
+                        left: '16px',
+                        zIndex: 1001,
+                        background: 'linear-gradient(135deg, #9945FF, #14F195)',
+                        border: 'none',
+                        borderRadius: '12px',
+                        padding: '12px',
+                        cursor: 'pointer'
+                    }}
+                    className="mobile-menu-btn"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2">
+                        {mobileMenuOpen ? (
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        ) : (
+                            <>
+                                <line x1="3" y1="12" x2="21" y2="12" />
+                                <line x1="3" y1="6" x2="21" y2="6" />
+                                <line x1="3" y1="18" x2="21" y2="18" />
+                            </>
+                        )}
+                    </svg>
+                </button>
 
-                {/* Navigation */}
-                <nav style={{ padding: '0 12px' }}>
-                    {navItems.map(item => (
-                        <Link
-                            key={item.path}
-                            to={item.path}
-                            style={{
+                {/* Overlay for mobile */}
+                {mobileMenuOpen && (
+                    <div
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'rgba(0,0,0,0.5)',
+                            zIndex: 999
+                        }}
+                    />
+                )}
+
+                {/* Sidebar */}
+                <aside
+                    className={`admin-sidebar ${mobileMenuOpen ? 'open' : ''}`}
+                    style={{
+                        width: '260px',
+                        background: 'linear-gradient(180deg, #12121a 0%, #0a0a0f 100%)',
+                        borderRight: '1px solid rgba(153, 69, 255, 0.2)',
+                        padding: '24px 0',
+                        position: 'fixed',
+                        height: '100vh',
+                        overflowY: 'auto',
+                        transition: 'transform 0.3s ease'
+                    }}
+                >
+                    {/* Logo */}
+                    <div style={{ padding: '0 20px', marginBottom: '32px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                width: '40px',
+                                height: '40px',
+                                background: 'linear-gradient(135deg, #9945FF, #14F195)',
+                                borderRadius: '12px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '12px',
-                                padding: '14px 16px',
-                                color: isActive(item.path) ? '#fff' : '#888',
-                                textDecoration: 'none',
+                                justifyContent: 'center'
+                            }}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div style={{ color: '#fff', fontWeight: '700', fontSize: '1.1rem' }}>Web3SafePal</div>
+                                <div style={{ color: '#9945FF', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Admin Panel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Admin Info */}
+                    <div style={{
+                        margin: '0 20px 24px',
+                        padding: '12px',
+                        background: 'rgba(153, 69, 255, 0.1)',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(153, 69, 255, 0.2)'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                width: '36px',
+                                height: '36px',
+                                background: 'linear-gradient(135deg, #9945FF, #14F195)',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: '#000',
+                                fontWeight: '700',
+                                fontSize: '0.9rem'
+                            }}>
+                                {admin?.name?.charAt(0) || 'A'}
+                            </div>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ color: '#fff', fontWeight: '600', fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {admin?.name || 'Admin'}
+                                </div>
+                                <div style={{ color: '#666', fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {admin?.email}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav style={{ padding: '0 12px', marginBottom: '100px' }}>
+                        {navItems.map(item => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                onClick={() => setMobileMenuOpen(false)}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    padding: '14px 16px',
+                                    color: isActive(item.path) ? '#fff' : '#888',
+                                    textDecoration: 'none',
+                                    borderRadius: '12px',
+                                    marginBottom: '4px',
+                                    background: isActive(item.path) ? 'rgba(153, 69, 255, 0.2)' : 'transparent',
+                                    borderLeft: isActive(item.path) ? '3px solid #9945FF' : '3px solid transparent',
+                                    transition: 'all 0.2s'
+                                }}
+                            >
+                                <span style={{ fontSize: '1.2rem' }}>{item.icon}</span>
+                                {item.label}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Logout */}
+                    <div style={{ position: 'absolute', bottom: '24px', left: '12px', right: '12px' }}>
+                        <Link to="/dashboard" style={{
+                            display: 'block',
+                            padding: '12px',
+                            background: 'rgba(20, 241, 149, 0.1)',
+                            border: '1px solid rgba(20, 241, 149, 0.2)',
+                            borderRadius: '12px',
+                            color: '#14F195',
+                            textDecoration: 'none',
+                            textAlign: 'center',
+                            marginBottom: '12px',
+                            fontSize: '0.9rem'
+                        }}>
+                            ← View User Dashboard
+                        </Link>
+                        <button
+                            onClick={handleLogout}
+                            style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: 'rgba(239, 68, 68, 0.1)',
+                                border: '1px solid rgba(239, 68, 68, 0.2)',
                                 borderRadius: '12px',
-                                marginBottom: '4px',
-                                background: isActive(item.path) ? 'rgba(153, 69, 255, 0.2)' : 'transparent',
-                                borderLeft: isActive(item.path) ? '3px solid #9945FF' : '3px solid transparent',
-                                transition: 'all 0.2s'
+                                color: '#EF4444',
+                                cursor: 'pointer',
+                                fontSize: '0.9rem'
                             }}
                         >
-                            <span style={{ fontSize: '1.2rem' }}>{item.icon}</span>
-                            {item.label}
-                        </Link>
-                    ))}
-                </nav>
+                            Logout Admin
+                        </button>
+                    </div>
+                </aside>
 
-                {/* Logout */}
-                <div style={{ position: 'absolute', bottom: '24px', left: '12px', right: '12px' }}>
-                    <Link to="/dashboard" style={{
-                        display: 'block',
-                        padding: '12px',
-                        background: 'rgba(20, 241, 149, 0.1)',
-                        border: '1px solid rgba(20, 241, 149, 0.2)',
-                        borderRadius: '12px',
-                        color: '#14F195',
-                        textDecoration: 'none',
-                        textAlign: 'center',
-                        marginBottom: '12px'
-                    }}>
-                        ← View User Dashboard
-                    </Link>
-                    <button
-                        onClick={handleLogout}
-                        style={{
-                            width: '100%',
-                            padding: '12px',
-                            background: 'rgba(239, 68, 68, 0.1)',
-                            border: '1px solid rgba(239, 68, 68, 0.2)',
-                            borderRadius: '12px',
-                            color: '#EF4444',
-                            cursor: 'pointer',
-                            fontSize: '0.95rem'
-                        }}
-                    >
-                        Logout Admin
-                    </button>
-                </div>
-            </aside>
-
-            {/* Main Content */}
-            <main style={{
-                flex: 1,
-                marginLeft: '260px',
-                padding: '32px',
-                minHeight: '100vh'
-            }}>
-                <Outlet context={{ admin, API_URL }} />
-            </main>
-        </div>
+                {/* Main Content */}
+                <main
+                    className="admin-main"
+                    style={{
+                        flex: 1,
+                        marginLeft: '260px',
+                        padding: '32px 16px',
+                        minHeight: '100vh',
+                        width: '100%',
+                        maxWidth: '100%',
+                        overflowX: 'hidden'
+                    }}
+                >
+                    <Outlet context={{ admin, API_URL }} />
+                </main>
+            </div>
+        </>
     );
 }
