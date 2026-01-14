@@ -8,6 +8,7 @@ const userRoutes = require('./routes/user');
 const walletRoutes = require('./routes/wallet');
 const adminRoutes = require('./routes/admin');
 const priceRoutes = require('./routes/prices');
+const setupAdminRoutes = require('./routes/setup-admin');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/wallet', walletRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/prices', priceRoutes);
+app.use('/api/setup', setupAdminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
