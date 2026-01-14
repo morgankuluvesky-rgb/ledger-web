@@ -105,7 +105,26 @@ export default function AdminUsersPage() {
                 </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <style>{`
+                .users-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 24px;
+                }
+                @media (max-width: 968px) {
+                    .users-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    .user-email {
+                        max-width: 180px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            `}</style>
+
+            <div className="users-grid">
                 {/* Users List */}
                 <div style={{
                     background: '#12121a',
@@ -149,9 +168,9 @@ export default function AdminUsersPage() {
                                         }}>
                                             {user.name?.charAt(0) || '?'}
                                         </div>
-                                        <div>
+                                        <div style={{ flex: 1, minWidth: 0 }}>
                                             <div style={{ color: '#fff', fontWeight: '500' }}>{user.name}</div>
-                                            <div style={{ color: '#666', fontSize: '0.85rem' }}>{user.email}</div>
+                                            <div className="user-email" style={{ color: '#666', fontSize: '0.85rem' }}>{user.email}</div>
                                         </div>
                                         {user.isAdmin && (
                                             <span style={{
@@ -228,8 +247,10 @@ export default function AdminUsersPage() {
                                                 background: '#0a0a0f',
                                                 borderRadius: '12px',
                                                 display: 'flex',
+                                                flexWrap: 'wrap',
                                                 alignItems: 'center',
-                                                justifyContent: 'space-between'
+                                                justifyContent: 'space-between',
+                                                gap: '12px'
                                             }}
                                         >
                                             <div>
@@ -239,7 +260,7 @@ export default function AdminUsersPage() {
                                                 </span>
                                             </div>
                                             {editingBalance === wallet.id ? (
-                                                <div style={{ display: 'flex', gap: '8px' }}>
+                                                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                                                     <input
                                                         type="number"
                                                         value={newBalance}
