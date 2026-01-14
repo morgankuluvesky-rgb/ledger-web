@@ -15,7 +15,7 @@ export default function AdminPanel() {
     const checkAdmin = async () => {
         const token = localStorage.getItem('adminToken');
         if (!token) {
-            navigate('/admin');
+            navigate('/adminlogin');
             return;
         }
 
@@ -29,10 +29,10 @@ export default function AdminPanel() {
                 setAdmin(data);
             } else {
                 localStorage.removeItem('adminToken');
-                navigate('/admin');
+                navigate('/adminlogin');
             }
         } catch (error) {
-            navigate('/admin');
+            navigate('/adminlogin');
         } finally {
             setLoading(false);
         }
@@ -40,7 +40,7 @@ export default function AdminPanel() {
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
-        navigate('/admin');
+        navigate('/adminlogin');
     };
 
     if (loading) {
